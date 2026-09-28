@@ -1,0 +1,33 @@
+#gemini-search-bridge { font-size: 13px; line-height: 1.55; color: var(--SmartThemeBodyColor, #dfdfdf); }
+#gemini-search-bridge * { box-sizing: border-box; }
+#gemini-search-bridge [hidden] { display: none !important; }
+#gemini-search-bridge .gsb-drawer { border: 1px solid var(--SmartThemeBorderColor, #444); border-radius: 10px; overflow: hidden; }
+#gemini-search-bridge .gsb-drawer > summary { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 10px 12px; cursor: pointer; font-weight: 650; }
+#gemini-search-bridge .gsb-badge { font-weight: 400; font-size: 11px; opacity: .75; }
+#gemini-search-bridge .gsb-content { padding: 0 12px 12px; }
+#gemini-search-bridge .gsb-check { display: flex; align-items: center; gap: 8px; margin: 10px 0 3px; }
+#gemini-search-bridge .gsb-check input { margin: 0; accent-color: #85b8b1; }
+#gemini-search-bridge .gsb-note { font-size: 12px; opacity: .76; margin: 5px 0 12px; overflow-wrap: anywhere; }
+#gemini-search-bridge .gsb-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin: 10px 0; }
+#gemini-search-bridge .gsb-grid label, #gemini-search-bridge .gsb-stack { display: flex; flex-direction: column; gap: 5px; }
+#gemini-search-bridge .gsb-stack { margin: 10px 0; }
+#gemini-search-bridge input:not([type=checkbox]), #gemini-search-bridge select, #gemini-search-bridge textarea { width: 100%; min-width: 0; padding: 8px; color: inherit; background: var(--SmartThemeBlurTintColor, #20252d); border: 1px solid var(--SmartThemeBorderColor, #48505a); border-radius: 6px; font: inherit; }
+#gemini-search-bridge textarea { resize: vertical; max-height: 240px; }
+#gemini-search-bridge .gsb-actions { display: flex; gap: 7px; flex-wrap: wrap; margin-top: 10px; }
+#gemini-search-bridge button { padding: 7px 11px; border-radius: 6px; border: 1px solid var(--SmartThemeBorderColor, #596371); background: transparent; color: inherit; font: inherit; cursor: pointer; }
+#gemini-search-bridge button.gsb-primary { background: #335d58; border-color: #608d86; color: #f2fffc; }
+#gemini-search-bridge button:disabled { opacity: .45; cursor: default; }
+#gemini-search-bridge :focus-visible { outline: 2px solid #a3d4cb; outline-offset: 2px; }
+#gemini-search-bridge .gsb-status { padding: 8px 0; margin: 3px 0; font-size: 12px; color: #a6d8cf; overflow-wrap: anywhere; }
+#gemini-search-bridge .gsb-error { color: #eeb79c; }
+#gemini-search-bridge .gsb-result { border-top: 1px solid var(--SmartThemeBorderColor, #444); padding-top: 10px; }
+#gemini-search-bridge .gsb-result-head { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 6px; }
+#gemini-search-bridge .gsb-result-head span { opacity: .65; font-size: 11px; overflow-wrap: anywhere; }
+#gemini-search-bridge .gsb-answer { white-space: pre-wrap; overflow-wrap: anywhere; max-height: 300px; overflow-y: auto; padding: 10px 0; }
+#gemini-search-bridge .gsb-sources ol { padding-left: 22px; max-height: 200px; overflow-y: auto; margin: 7px 0; }
+#gemini-search-bridge a { color: #a3d4cb; overflow-wrap: anywhere; }
+#gemini-search-bridge summary { cursor: pointer; }
+#gemini-search-bridge iframe { width: 100%; height: 140px; border: 0; border-radius: 6px; margin-top: 8px; background: white; }
+#gemini-search-bridge .gsb-options { margin-top: 15px; border-top: 1px solid var(--SmartThemeBorderColor, #444); padding-top: 10px; }
+#gemini-search-bridge .gsb-foot { margin-bottom: 0; margin-top: 14px; }
+@media (max-width: 480px) { #gemini-search-bridge .gsb-grid { grid-template-columns: 1fr; } }

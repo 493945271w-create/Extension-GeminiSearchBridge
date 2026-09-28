@@ -1,0 +1,19 @@
+{
+  "display_name": "Gemini 独立搜索",
+  "loading_order": 100,
+  "dependencies": [],
+  "js": "index.js",
+  "author": "ASUKA / Codex",
+  "homePage": "https://github.com/493945271w-create/Extension-GeminiSearchBridge",
+  "version": "0.1.0",
+  "auto_update": false,
+  "hooks": {
+    "activate": "onActivate",
+    "enable": "onActivate",
+    "disable": "onDisable",
+    "delete": "onDisable"
+  },
+  "css": "style.css",
+  "minimum_client_version": "1.17.0",
+  "generate_interceptor": "GeminiSearchBridge_Intercept"
+}

@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "minimum": {
+    "sillytavern": "1.17.0",
+    "tavernHelper": null
+  },
+  "requirements": [
+    {
+      "id": "host-context",
+      "owner": "sillytavern",
+      "symbol": "SillyTavern.getContext",
+      "required": true,
+      "fallback": null
+    },
+    {
+      "id": "request-headers",
+      "owner": "sillytavern",
+      "symbol": "context.getRequestHeaders",
+      "required": true,
+      "fallback": null
+    },
+    {
+      "id": "settings",
+      "owner": "sillytavern",
+      "symbol": "context.chatCompletionSettings",
+      "required": true,
+      "fallback": null
+    },
+    {
+      "id": "prompt-injection",
+      "owner": "sillytavern",
+      "symbol": "context.setExtensionPrompt",
+      "required": true,
+      "fallback": null
+    },
+    {
+      "id": "generation-hook",
+      "owner": "sillytavern",
+      "symbol": "context.eventTypes.GENERATION_STARTED",
+      "required": true,
+      "fallback": null
+    },
+    {
+      "id": "request-hook",
+      "owner": "sillytavern",
+      "symbol": "context.eventTypes.CHAT_COMPLETION_SETTINGS_READY",
+      "required": true,
+      "fallback": null
+    }
+  ]
+}
