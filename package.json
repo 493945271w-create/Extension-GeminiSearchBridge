@@ -1,6 +1,6 @@
 {
   "name": "gemini-search-bridge",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Independent Gemini Google Search and temporary evidence handoff for SillyTavern.",
   "private": true,
   "type": "module",

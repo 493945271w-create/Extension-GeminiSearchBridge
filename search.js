@@ -72,21 +72,26 @@ function responseError(code) {
 /** Consume native Google SSE before SillyTavern's text-only client wrapper. */
 export async function readGroundedResponse(response, signal) {
     if (!response.ok) throw responseError(response.status);
-    if (!response.headers.get('content-type')?.includes('text/event-stream')) {
-        const data = await response.json().catch(() => null);
-        if (data?.error) throw responseError(data.error.code || response.status);
-        throw new Error('没有收到 Google 原生流式数据。当前酒馆后端或反代可能不支持来源信息透传。');
-    }
+    // SillyTavern's stream forwarder preserves the body but may omit Content-Type.
+    // Identify SSE from data frames, then require native candidates and grounding.
     if (!response.body) throw new Error('搜索响应为空。');
     const reader = response.body.getReader();
     const decoder = new TextDecoder();
     const sources = new Map();
     const queries = new Set();
-    let text = '', buffer = '', finish = '', suggestions = '', bytes = 0;
+    let text = '', buffer = '', finish = '', suggestions = '', bytes = 0, sawData = false;
     function accept(frame) {
         const lines = frame.split(/\r?\n/);
         const payload = lines.filter(line => line.startsWith('data:')).map(line => line.slice(5).trimStart()).join('\n');
-        if (!payload || payload.trim() === '[DONE]') return;
+        if (!payload) {
+            // Some backends return a JSON error with HTTP 200, without SSE framing.
+            let other;
+            try { other = JSON.parse(frame); } catch { /* SSE comments/keepalives have no JSON payload. */ }
+            if (other?.error) throw responseError(other.error.code);
+            return;
+        }
+        if (payload.trim() === '[DONE]') return;
+        sawData = true;
         let data;
         try { data = JSON.parse(payload); } catch { throw new Error('搜索响应格式不完整，请重试。'); }
         if (data.error) throw responseError(data.error.code);
@@ -124,6 +129,7 @@ export async function readGroundedResponse(response, signal) {
         }
         if (buffer.trim()) accept(buffer);
         signal?.throwIfAborted();
+        if (!sawData) throw new Error('没有收到可识别的 Google 原生流式内容。请确认后端或反代透传 data: 数据分段与搜索来源信息。');
         if (finish !== 'STOP') throw new Error(finish === 'MAX_TOKENS'
             ? '资料输出被长度限制截断。请缩小问题，或提高搜索输出额度。'
             : '搜索没有完整结束，本次资料未使用。');
